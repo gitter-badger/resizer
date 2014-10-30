@@ -77,6 +77,52 @@
     <Compile Include="Collections\QuerystringBase.cs" />
     <Compile Include="Collections\ReadOnlyDictionary.cs" />
     <Compile Include="ExtensionMethods\Dictionary.cs" />
+    <Compile Include="OwinBackport\AspNetDictionary.cs" />
+    <Compile Include="OwinBackport\AspNetDictionary.Generated1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AspNetDictionary.Generated.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OwinBackport\AspNetRequestHeaders.cs" />
+    <Compile Include="OwinBackport\AspNetResponseHeaders.cs" />
+    <Compile Include="OwinBackport\CallContextAsyncResult.cs" />
+    <Compile Include="OwinBackport\Constants.cs" />
+    <Compile Include="OwinBackport\DefaultTrace.cs" />
+    <Compile Include="OwinBackport\DefaultTraceFactory.cs" />
+    <Compile Include="OwinBackport\DelegatingStream.cs" />
+    <Compile Include="OwinBackport\DisconnectWatcher.cs" />
+    <Compile Include="OwinBackport\ErrorState.cs" />
+    <Compile Include="OwinBackport\HttpContextItemKeys.cs" />
+    <Compile Include="OwinBackport\InputStream.cs" />
+    <Compile Include="OwinBackport\IntegratedPipelineBlueprint.cs" />
+    <Compile Include="OwinBackport\IntegratedPipelineBlueprintStage.cs" />
+    <Compile Include="OwinBackport\IntegratedPipelineContext.cs" />
+    <Compile Include="OwinBackport\IntegratedPipelineContextStage.cs" />
+    <Compile Include="OwinBackport\ITrace.cs" />
+    <Compile Include="OwinBackport\ITraceFactory.cs" />
+    <Compile Include="OwinBackport\MachineKeyDataProtectionProvider.cs" />
+    <Compile Include="OwinBackport\MachineKeyDataProtector.cs" />
+    <Compile Include="OwinBackport\NilDictionary.cs" />
+    <Compile Include="OwinBackport\OutputStream.cs" />
+    <Compile Include="OwinBackport\OwinAppContext.cs" />
+    <Compile Include="OwinBackport\OwinApplication.cs" />
+    <Compile Include="OwinBackport\OwinCallContext.cs" />
+    <Compile Include="OwinBackport\OwinCallContext.DisableResponseCompression.cs" />
+    <Compile Include="OwinBackport\OwinCallContext.Environment.cs" />
+    <Compile Include="OwinBackport\ReferencedAssemblyWrapper.cs" />
+    <Compile Include="OwinBackport\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="OwinBackport\SendingHeadersEvent.cs" />
+    <Compile Include="OwinBackport\ShutdownDetector.cs" />
+    <Compile Include="OwinBackport\StageAsyncResult.cs" />
+    <Compile Include="OwinBackport\TraceExtensions.cs" />
+    <Compile Include="OwinBackport\TraceFactory.cs" />
+    <Compile Include="OwinBackport\TraceTextWriter.cs" />
+    <Compile Include="OwinBackport\UnsafeIISMethods.cs" />
+    <Compile Include="OwinBackport\Utils.cs" />
     <Compile Include="PluginLoadingHints.cs" />
     <Compile Include="Plugins\Basic\MvcRoutingShimPlugin.cs" />
     <Compile Include="Plugins\Basic\NoCacheAsyncHandler.cs" />
@@ -230,6 +276,21 @@
     <Content Include="license.txt" />
     <Content Include="plugin-notes.txt" />
     <Content Include="totest.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OwinBackport\AspNetDictionary.Generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AspNetDictionary.Generated1.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OwinBackport\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
