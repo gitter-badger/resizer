@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Drawing;
 using ImageResizer.Util;
+using ImageResizer.ExtensionMethods;
 
 namespace ImageResizer.Plugins.CustomOverlay {
     /// <summary>
@@ -49,7 +50,7 @@ namespace ImageResizer.Plugins.CustomOverlay {
         public bool CacheDb { get; set; }
 
         public CachedOverlayProvider(NameValueCollection args):this(args["connectionStringName"],args["sqlDependencyName"],args["overlayBasePath"]) {
-            CacheDb = Utils.getBool(args, "cachedb", true);
+            CacheDb = args.Get("cachedb", true);
         }
 
         public IEnumerable<string> GetSupportedQuerystringKeys() {

@@ -12,6 +12,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Drawing.Drawing2D;
 using System.Web.Hosting;
+using ImageResizer.ExtensionMethods;
 
 namespace ImageResizer.Plugins.CustomOverlay {
     /// <summary>
@@ -43,10 +44,10 @@ namespace ImageResizer.Plugins.CustomOverlay {
             CustomOverlaysKey += new Random().Next().ToString();
 
 
-            IgnoreMissingFiles = Utils.getBool(args, "ignoreMissingFiles", false);
+            IgnoreMissingFiles = args.Get("ignoreMissingFiles", false);
 
-            Smoothing = Utils.parseEnum<SmoothingMode>(args["smoothing"], SmoothingMode.HighQuality);
-            Compositing = Utils.parseEnum<CompositingQuality>(args["compositing"], CompositingQuality.HighQuality);
+            Smoothing = args.Get<SmoothingMode>("smoothing", SmoothingMode.HighQuality);
+            Compositing = args.Get<CompositingQuality>("compositing", CompositingQuality.HighQuality);
            
         }
 
@@ -122,7 +123,7 @@ namespace ImageResizer.Plugins.CustomOverlay {
 
                         g.DrawImage(b, PolygonMath.getParallelogram(new LayoutEngine().GetOverlayParalellogram(o, b.Size, s)), new Rectangle(0, 0, b.Width, b.Height), GraphicsUnit.Pixel, ia);
                         //Draw the poly if requested.
-                        if (Utils.getBool(s.settings,"customoverlay.showpoly",false)) g.DrawPolygon(Pens.Green, new LayoutEngine().TranslatePoints(o.Poly, s));
+                        if (s.settings.Get("customoverlay.showpoly",false)) g.DrawPolygon(Pens.Green, new LayoutEngine().TranslatePoints(o.Poly, s));
                     }
                 } catch (FileNotFoundException fe) {
                     if (!IgnoreMissingFiles) throw new ImageMissingException("The overlay image " + o.OverlayPath + " could not be found.");
