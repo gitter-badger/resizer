@@ -23,7 +23,7 @@ namespace ImageResizer{
 			public ref class FastScalingPlugin : public ImageResizer::Resizing::BuilderExtension, IPlugin
 			{
 			protected:
-                 virtual RequestedAction InternalGraphicsDrawImage(ImageState^ s, Bitmap^ dest, Bitmap^ source, array<PointF>^ targetArea, RectangleF sourceArea, array<float, 2>^ colorMatrix) override{
+                virtual RequestedAction InternalGraphicsDrawImage(ImageState^ s, Bitmap^ dest, Bitmap^ source, array<PointF>^ targetArea, RectangleF sourceArea, array<array<float, 1>^, 1>^ colorMatrix) override{
                     
                     NameValueCollection ^query = s->settingsAsCollection();
 
@@ -110,14 +110,16 @@ namespace ImageResizer{
 					c->Plugins->remove_plugin(this);
 					return true;
 				}
-                void ApplyMatrix(Bitmap ^img, array<float, 2>^ colorMatrix)
+                void ApplyMatrix(Bitmap ^img, array<array<float, 1>^, 1>^ colorMatrix)
                 {
+                    if (colorMatrix == nullptr) return;
+
                     BitmapBgraPtr bb;
                     WrappedBitmap ^wb = gcnew WrappedBitmap(img, bb);
                     float *cm[5];
                     for (int i = 0; i < 5; i++)
                     {
-                        pin_ptr<float> row = &colorMatrix[i, 0];
+                        pin_ptr<float> row = &colorMatrix[i][0];
                         cm[i] = row;
                     }
                     InternalApplyMatrix(bb, cm);
