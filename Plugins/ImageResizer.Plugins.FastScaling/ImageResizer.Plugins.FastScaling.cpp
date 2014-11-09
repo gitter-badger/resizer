@@ -55,9 +55,11 @@ namespace ImageResizer{
 
 
 					RectangleF targetBox = ImageResizer::Util::PolygonMath::GetBoundingBox(targetArea);
-					if (targetBox.Location != targetArea[0] || targetBox.Width != (targetArea[1].X - targetArea[0].X)){
+                    if (targetBox.Location != targetArea[0] || targetArea[1].Y != targetArea[0].Y || targetArea[2].X != targetArea[0].X){
 						return RequestedAction::None;
                     }
+
+
                     
                     InterpolationDetailsPtr details;
                     details = DetailsOriginal();
