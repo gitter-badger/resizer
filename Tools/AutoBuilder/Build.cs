@@ -11,7 +11,7 @@ using Amazon.S3.Transfer;
 namespace ImageResizer.ReleaseBuilder {
     public class Build :Interaction {
         FolderFinder f = new FolderFinder("Core" );
-        Devenv d = null;
+        MSBuild d = null;
         FsQuery q = null;
         VersionEditor v = null;
         GitManager g = null;
@@ -21,7 +21,7 @@ namespace ImageResizer.ReleaseBuilder {
         string bucketName = "resizer-downloads";
         string linkBase = "http://downloads.imageresizing.net/";
         public Build() {
-            d = new Devenv(Path.Combine(f.FolderPath,"ImageResizer.sln"));
+            d = new MSBuild(Path.Combine(f.FolderPath,"ImageResizer.sln"));
             v = new VersionEditor(Path.Combine(f.FolderPath, "SharedAssemblyInfo.cs"));
             g = new GitManager(f.ParentPath);
             nuget = new NugetManager(Path.Combine(f.ParentPath, "nuget"));
@@ -322,18 +322,22 @@ namespace ImageResizer.ReleaseBuilder {
             try { System.IO.Directory.Delete(Path.Combine(f.ParentPath, "dlls\\release"), true); } catch { }
             try { System.IO.Directory.Delete(Path.Combine(f.ParentPath, "dlls\\debug"), true); } catch { }
 
-            d.Run("/Clean Debug");
-            d.Run("/Clean Release");
-            d.Run("/Clean Trial");
+            d.Run("/t:Clean /p:Configuration=Debug");
+            d.Run("/t:Clean /p:Configuration=Release");
+            d.Run("/t:Clean /p:Configuration=Trial");
 
         }
 
         public bool BuildAll(bool buildDebug) {
-            int result = d.Run("/Build Release") + //Have to run Release first, since ImageResizerGUI includes the DLLs.
-            d.Run("/Build Trial");
-            if (buildDebug) result += d.Run("/Build Debug");
+            int result = d.Run("/p:Configuration=Release") + //Have to run Release first, since ImageResizerGUI includes the DLLs.
+            d.Run("/p:Configuration=Trial");
+            if (buildDebug) result += d.Run("/p:Configuration=Debug");
 
-            if (result > 0 && !ask("There may have been build errors. Continue?")) return false;
+            if (result > 0)
+            {
+                say("There may have been build errors.");
+                return false;
+            }
             return true;
         }
 
