@@ -2,6 +2,8 @@ clone_depth: 1
 version: 4.0.0.{build}
 
 environment:
+  EnableNuGetPackageRestore: true
+  
   ab_nugetserver: https://www.myget.org/F/test-test-test/
   ab_nugetkey:
     secure: GmqIvIvIOiwNxjW+z+vL9tbVD9vqUdB+0HsdDhnhR3km4WLZwpLcQT41D7xlhgFX
