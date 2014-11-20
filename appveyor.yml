@@ -12,7 +12,7 @@ environment:
   ab_s3key:
     secure: RP9hZqS0Pt2SLeias0iZpt2E9OltVX8OPfhWnGET6fQKZ05Fy6y0z1JcWWvONhF0
 
-before__build:
+before_build:
   - nuget restore Tools\AutoBuilder\ImageResizer.AutoBuilder.sln
   - nuget restore Core\ImageResizer.sln
 
