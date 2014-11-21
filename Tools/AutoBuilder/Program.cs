@@ -8,12 +8,8 @@ namespace ImageResizer.ReleaseBuilder {
     class Program {
         [STAThread]
         static void Main(string[] args) {
-
             Build b = new Build();
             b.Run();
-
-            Console.WriteLine("Press a key to exit");
-            Console.ReadKey();
         }
     }
 }
