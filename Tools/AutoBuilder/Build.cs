@@ -264,8 +264,8 @@ namespace ImageResizer.ReleaseBuilder {
             //10 - Pacakge all nuget configurations
             foreach (NPackageDescriptor pd in npackages) {
                 if (pd.Skip) continue;
-                
-                if (pd.Build) nuget.Pack(pd);
+
+                if (pd.Build) if (nuget.Pack(pd) != 0) return 1;
 
             }
 
