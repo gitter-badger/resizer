@@ -322,16 +322,17 @@ namespace ImageResizer.ReleaseBuilder {
             try { System.IO.Directory.Delete(Path.Combine(f.ParentPath, "dlls\\release"), true); } catch { }
             try { System.IO.Directory.Delete(Path.Combine(f.ParentPath, "dlls\\debug"), true); } catch { }
 
-            d.Run("/v:m /t:Clean /p:Configuration=Debug");
-            d.Run("/v:m /t:Clean /p:Configuration=Release");
-            d.Run("/v:m /t:Clean /p:Configuration=Trial");
+            d.Run("/t:Clean /p:Configuration=Debug");
+            d.Run("/t:Clean /p:Configuration=Release");
+            d.Run("/t:Clean /p:Configuration=Trial");
 
         }
 
         public bool BuildAll(bool buildDebug) {
-            int result = d.Run("/v:m /p:Configuration=Release") + //Have to run Release first, since ImageResizerGUI includes the DLLs.
-            d.Run("/v:m /p:Configuration=Trial");
-            if (buildDebug) result += d.Run("/v:m /p:Configuration=Debug");
+            //Have to run Release first, since ImageResizerGUI includes the DLLs.
+            int result = d.Run("/p:Configuration=Release") + 
+                         d.Run("/p:Configuration=Trial");
+            if (buildDebug) result += d.Run("/p:Configuration=Debug");
 
             if (result > 0)
             {

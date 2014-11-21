@@ -21,7 +21,6 @@ namespace BuildTools
         {
             get
             {
-                //We're assuming that the latest visual studio (even partially installed) is fully installed. This can be a faulty assumption.
                 object test = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\MSBuild\\ToolsVersions\\4.0", "MSBuildToolsPath", null);
 
                 return Path.Combine(test.ToString(), "msbuild.exe");
@@ -33,7 +32,7 @@ namespace BuildTools
         {
             if (solutionPath == null) solutionPath = this.solutionPath;
             var psi = new ProcessStartInfo(MSBuildPath);
-            psi.Arguments = '"' + solutionPath + "\" " + args;
+            psi.Arguments = '"' + solutionPath + "\" /v:m /clp:ErrorsOnly " + args;
             psi.WorkingDirectory = Path.GetDirectoryName(solutionPath);
 
             psi.UseShellExecute = false;
