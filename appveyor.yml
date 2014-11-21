@@ -16,6 +16,11 @@ before_build:
   - set ab_version=%APPVEYOR_BUILD_VERSION%
   - nuget restore Tools\AutoBuilder\ImageResizer.AutoBuilder.sln
   - nuget restore Core\ImageResizer.sln
+  
+  - cd submodules
+  - rmdir libwebp-net
+  - git clone https://github.com/imazen/libwebp-net --depth 1
+  - cd ..
 
 build:
   project: Tools\AutoBuilder\ImageResizer.AutoBuilder.sln
