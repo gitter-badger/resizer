@@ -7,9 +7,9 @@ using Microsoft.Win32;
 namespace ImageResizer.ReleaseBuilder {
     class Program {
         [STAThread]
-        static void Main(string[] args) {
+        static int Main(string[] args) {
             Build b = new Build();
-            b.Run();
+            return b.Run();
         }
     }
 }

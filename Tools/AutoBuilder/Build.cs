@@ -61,7 +61,7 @@ namespace ImageResizer.ReleaseBuilder {
         List<PackageDescriptor> packages = new List<PackageDescriptor>();
 
         [STAThread]
-        public void Run() {
+        public int Run() {
             say("Project root: " + f.ParentPath);
             nl();
             //The base name for creating zip packags.
@@ -85,7 +85,7 @@ namespace ImageResizer.ReleaseBuilder {
             if(s3ID == null || s3Key == null || nuget.apiKey == null)
             {
                 say("Env vars ab_s3id, ab_s3key and ab_nugetkey must be specified.");
-                return;
+                return 1;
             }
 
 
@@ -230,7 +230,7 @@ namespace ImageResizer.ReleaseBuilder {
                 q.Rescan(); //Rescan filesystem to prevent errors building the archive (since we delete stuff in CleanAll())
                 v.Save();
 
-                if (!success) return; //If the build didn't go ok, pause and exit
+                if (!success) return 1; //If the build didn't go ok, pause and exit
 
                 //8b - run cleanup routine
                 RemoveUselessFiles();
@@ -314,7 +314,7 @@ namespace ImageResizer.ReleaseBuilder {
             //12 - Generate template for release notes article
 
             say("Everything is done.");
-            
+            return 0;
         }
 
         public void CleanAll(){
