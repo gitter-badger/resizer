@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageResizer", "ImageResizer.csproj", "{FA5EF673-A6A4-498D-AA24-C025CC5267AF}"
 EndProject
@@ -712,8 +712,8 @@ Global
 		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Release|x86.ActiveCfg = Release|Any CPU
 		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Trial|Any CPU.ActiveCfg = Release|Any CPU
 		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Trial|Any CPU.Build.0 = Release|Any CPU
-		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Trial|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Trial|Mixed Platforms.Build.0 = Release|Any CPU
+		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Trial|Mixed Platforms.ActiveCfg = Trial|Any CPU
+		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Trial|Mixed Platforms.Build.0 = Trial|Any CPU
 		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Trial|x64.ActiveCfg = Release|Any CPU
 		{DF78DF74-D71E-470D-8BE2-D827498E8AF8}.Trial|x86.ActiveCfg = Release|Any CPU
 		{92F607A3-2F04-4536-8346-B6FEF8B774FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
