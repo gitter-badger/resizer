@@ -1,4 +1,5 @@
 # ImageResizer - Much more than image resizing
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/imazen/resizer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [Visit our home page for details and documentation](http://imageresizing.net).
 
